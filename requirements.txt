@@ -1,0 +1,4 @@
+feedparser==6.0.10
+legacy-cgi
+python-dotenv==1.0.1
+openai>=1.0.0
