@@ -4,7 +4,7 @@ import requests
 from dotenv import load_dotenv
 from openai import OpenAI
 from config import RSS_FEEDS, SYSTEM_PROMPT
-from utils import save_brief
+from utils import save_brief, save_news_to_excel
 
 load_dotenv()
 
@@ -43,7 +43,8 @@ def fetch_rss_news():
 def build_user_prompt(news_list):
     text = "下面是今天抓取到的新闻列表：\n\n"
     for n in news_list:
-        text += f"【{n['source']}】{n['title']}\n摘要：{n['summary']}\n链接：{n['link']}\n---\n"
+        clean_sum = save_brief.__globals__['clean_html'](n['summary'])
+        text += f"【{n['source']}】{n['title']}\n摘要：{clean_sum}\n链接：{n['link']}\n---\n"
     text += "\n请按照要求生成新闻简报"
     return text
 
@@ -64,6 +65,11 @@ if __name__ == "__main__":
     if not news:
         print("❌ 没有抓到新闻")
         exit()
+
+    # 导出Excel明细
+    save_news_to_excel(news)
+
+    # 生成AI简报
     brief_md = generate_brief(news)
     save_brief(brief_md)
     print("\n===== 生成简报完成 =====")

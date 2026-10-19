@@ -1,9 +1,12 @@
-# 稳定可用原生RSS源
+# 稳定可用RSS源，可自行增删
 RSS_FEEDS = [
     {"name": "IT之家", "url": "https://www.ithome.com/rss/"},
     {"name": "爱范儿", "url": "https://www.ifanr.com/feed"},
-    {"name": "第一财经", "url": "https://www.yicai.com/feed"},
     {"name": "Solidot科技", "url": "https://www.solidot.org/index.rss"},
+    {"name": "36氪", "url": "https://36kr.com/feed"},
+    {"name": "虎嗅网", "url": "https://www.huxiu.com/rss/0.xml"},
+    {"name": "少数派", "url": "https://sspai.com/feed"},
+    {"name": "界面新闻", "url": "https://www.jiemian.com/feed/"},
 ]
 
 # 核心Prompt，发给大模型，控制简报格式
